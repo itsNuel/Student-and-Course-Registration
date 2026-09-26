@@ -1,0 +1,38 @@
+@model List<myproject.ViewModels.StudentCourseViewModel>
+
+<h1>Students and Courses</h1>
+
+<a asp-controller="Student"
+   asp-action="Create"
+   class="btn btn-primary mb-3">
+    Add Student
+</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Student Name</th>
+            <th>Program</th>
+            <th>Course Code</th>
+            <th>Course Name</th>
+            <th>Instructor</th>
+            <th>Enrollment Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Student.Id</td>
+                <td>@item.Student.Name</td>
+                <td>@item.Student.Program</td>
+                <td>@item.Course.CourseCode</td>
+                <td>@item.Course.CourseName</td>
+                <td>@item.Course.Instructor</td>
+                <td>@item.EnrollmentDate</td>
+            </tr>
+        }
+    </tbody>
+</table>
