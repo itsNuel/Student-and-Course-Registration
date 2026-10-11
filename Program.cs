@@ -1,25 +1,30 @@
+using Microsoft.EntityFrameworkCore;
+using myproject.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add MVC services
 builder.Services.AddControllersWithViews();
+
+// Configure Entity Framework Core to use SQLite
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite("Data Source=student.db"));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
+
 app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
-
+// Configure the default MVC route
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Student}/{action=Index}/{id?}")

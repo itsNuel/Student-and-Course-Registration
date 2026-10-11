@@ -1,49 +1,41 @@
-@model myproject.ViewModels.StudentCreateViewModel
+@model myproject.Models.Student
 
-<h1>Create Student and Course</h1>
+@{
+    ViewData["Title"] = "Create Student";
+}
 
-<form asp-controller="Student" asp-action="Create" method="post">
+<h1>Create Student</h1>
 
+<form asp-action="Create" method="post">
+
+    <!-- Student Name -->
     <div class="mb-3">
         <label asp-for="Name" class="form-label"></label>
+
         <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+
+        <span asp-validation-for="Name"
+              class="text-danger"></span>
     </div>
 
+    <!-- Student Program -->
     <div class="mb-3">
         <label asp-for="Program" class="form-label"></label>
+
         <input asp-for="Program" class="form-control" />
-        <span asp-validation-for="Program" class="text-danger"></span>
+
+        <span asp-validation-for="Program"
+              class="text-danger"></span>
     </div>
 
-    <div class="mb-3">
-        <label asp-for="CourseCode" class="form-label"></label>
-        <input asp-for="CourseCode" class="form-control" />
-        <span asp-validation-for="CourseCode" class="text-danger"></span>
-    </div>
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary">
+        Save Student
+    </button>
 
-    <div class="mb-3">
-        <label asp-for="CourseName" class="form-label"></label>
-        <input asp-for="CourseName" class="form-control" />
-        <span asp-validation-for="CourseName" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Instructor" class="form-label"></label>
-        <input asp-for="Instructor" class="form-control" />
-        <span asp-validation-for="Instructor" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="EnrollmentDate" class="form-label"></label>
-        <input asp-for="EnrollmentDate" type="date" class="form-control" />
-        <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Create</button>
+    <!-- Return to Index -->
+    <a asp-action="Index" class="btn btn-secondary">
+        Back
+    </a>
 
 </form>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}

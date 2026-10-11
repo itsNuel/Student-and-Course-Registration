@@ -1,38 +1,33 @@
-@model List<myproject.ViewModels.StudentCourseViewModel>
+@model IEnumerable<myproject.Models.Student>
 
-<h1>Students and Courses</h1>
+<h1>Students</h1>
 
-<a asp-controller="Student"
-   asp-action="Create"
-   class="btn btn-primary mb-3">
+<!-- Link to the Create page -->
+<a asp-action="Create" class="btn btn-primary mb-3">
     Add Student
 </a>
 
-<table class="table table-bordered">
+<table class="table">
+
     <thead>
         <tr>
-            <th>Student ID</th>
-            <th>Student Name</th>
+            <th>Id</th>
+            <th>Name</th>
             <th>Program</th>
-            <th>Course Code</th>
-            <th>Course Name</th>
-            <th>Instructor</th>
-            <th>Enrollment Date</th>
         </tr>
     </thead>
 
     <tbody>
-        @foreach (var item in Model)
+
+        @foreach (var student in Model)
         {
             <tr>
-                <td>@item.Student.Id</td>
-                <td>@item.Student.Name</td>
-                <td>@item.Student.Program</td>
-                <td>@item.Course.CourseCode</td>
-                <td>@item.Course.CourseName</td>
-                <td>@item.Course.Instructor</td>
-                <td>@item.EnrollmentDate</td>
+                <td>@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.Program</td>
             </tr>
         }
+
     </tbody>
+
 </table>
