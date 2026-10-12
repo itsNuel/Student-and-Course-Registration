@@ -37,7 +37,9 @@ namespace myproject.Controllers
                 var student = new Student
                 {
                     Name = model.Name,
-                    Program = model.Program
+                    Program = model.Program,
+                    Email = model.Email,
+                    Phone = model.Phone
                 };
 
                 _context.Students.Add(student);
