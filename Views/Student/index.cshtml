@@ -17,6 +17,16 @@
                 <td>@student.Id</td>
                 <td>@student.Name</td>
                 <td>@student.Program</td>
+                
+                <td>
+                    <a asp-action="Edit" asp-route-id="@student.Id" class="btn btn-sm btn-primary">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete" asp-route-id="@student.Id" class="btn btn-sm btn-danger">
+                        Delete
+                    </a>
+                </td>
             </tr>
         }
     </tbody>
