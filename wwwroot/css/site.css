@@ -8,17 +8,173 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
 html {
   position: relative;
   min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+  margin: 0;
+  min-height: 100vh;
+  background-color: #fff;
+  color: #1f1f1f;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.page-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.top-header {
+  background: #fff;
+  border-bottom: 1px solid #d6d6d6;
+  padding: 0;
+}
+
+.page-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start !important;
+  gap: 0;
+  width: 100%;
+  min-height: 58px;
+  padding-left: 1.25rem;
+}
+
+.brand-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #212529;
+  margin: 0 1rem 0 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.brand-text:hover,
+.brand-text:focus {
+  color: #212529;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  margin-left: 0;
+  gap: 0.75rem;
+}
+
+.nav-links .nav-link {
+  color: #343a40;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+}
+
+.page-shell {
+  flex: 1;
+  padding: 2rem 0 1.5rem;
+}
+
+.page-shell .container {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  min-height: 0;
+}
+
+.page-title {
+  font-size: clamp(2rem, 2.5vw, 2.5rem);
+  font-weight: 700;
+  margin: 0 0 1.25rem;
+  color: #1d1d1d;
+}
+
+.add-student-btn {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  background-color: #0d6efd;
+  color: #fff;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.55rem 1.1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.add-student-btn:hover {
+  color: #fff;
+  background-color: #0b5ed7;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #cfcfcf;
+  margin-top: 0.5rem;
+}
+
+.students-table th,
+.students-table td {
+  border: 1px solid #cfcfcf;
+  padding: 0.8rem 0.75rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.students-table thead th {
+  background-color: #e9e9e9;
+  font-weight: 700;
+  color: #1b1b1b;
+}
+
+.students-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.student-list-table {
+  margin-top: 0;
+}
+
+.student-list-table th,
+.student-list-table td {
+  border-left: 0;
+  border-right: 0;
+  padding: 0.55rem 0.4rem;
+}
+
+.student-list-table thead th {
+  background: #fff;
+}
+
+.create-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.page-shell.create-page {
+  padding-top: 1.25rem;
+}
+
+.create-page .page-title {
+  margin-bottom: 0.5rem;
+}
+
+.page-footer {
+  background: rgba(255, 255, 255, 0.82);
+  color: #5d5d5d;
+  border-top: 1px solid #d6d6d6;
+  padding: 1rem 0;
+  font-size: 0.95rem;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {

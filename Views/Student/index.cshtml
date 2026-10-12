@@ -1,14 +1,8 @@
 @model IEnumerable<myproject.Models.Student>
 
-<h1>Students</h1>
+<h1 class="page-title">Students</h1>
 
-<!-- Link to the Create page -->
-<a asp-action="Create" class="btn btn-primary mb-3">
-    Add Student
-</a>
-
-<table class="table">
-
+<table class="table student-list-table">
     <thead>
         <tr>
             <th>Id</th>
@@ -16,9 +10,7 @@
             <th>Program</th>
         </tr>
     </thead>
-
     <tbody>
-
         @foreach (var student in Model)
         {
             <tr>
@@ -27,7 +19,5 @@
                 <td>@student.Program</td>
             </tr>
         }
-
     </tbody>
-
 </table>

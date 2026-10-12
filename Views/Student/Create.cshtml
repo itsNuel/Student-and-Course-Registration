@@ -1,41 +1,31 @@
-@model myproject.Models.Student
+@model myproject.ViewModels.StudentCreateViewModel
 
 @{
     ViewData["Title"] = "Create Student";
+    ViewData["PageClass"] = "create-page";
 }
 
-<h1>Create Student</h1>
+<h1 class="page-title">Create Student</h1>
 
-<form asp-action="Create" method="post">
-
-    <!-- Student Name -->
+<form asp-controller="Student" asp-action="Create" method="post">
     <div class="mb-3">
         <label asp-for="Name" class="form-label"></label>
-
         <input asp-for="Name" class="form-control" />
-
-        <span asp-validation-for="Name"
-              class="text-danger"></span>
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
-    <!-- Student Program -->
     <div class="mb-3">
         <label asp-for="Program" class="form-label"></label>
-
         <input asp-for="Program" class="form-control" />
-
-        <span asp-validation-for="Program"
-              class="text-danger"></span>
+        <span asp-validation-for="Program" class="text-danger"></span>
     </div>
 
-    <!-- Submit button -->
-    <button type="submit" class="btn btn-primary">
-        Save Student
-    </button>
-
-    <!-- Return to Index -->
-    <a asp-action="Index" class="btn btn-secondary">
-        Back
-    </a>
-
+    <div class="create-form-actions">
+        <button type="submit" class="btn btn-primary">Save Student</button>
+        <a asp-controller="Student" asp-action="Index" class="btn btn-secondary">Back</a>
+    </div>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
