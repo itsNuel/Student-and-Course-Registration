@@ -7,17 +7,19 @@
 
 <h1 class="page-title">Create Student</h1>
 
-<form asp-controller="Student" asp-action="Create" method="post">
+<form id="studentForm" asp-controller="Student" asp-action="Create" method="post">
     <div class="mb-3">
         <label asp-for="Name" class="form-label"></label>
         <input asp-for="Name" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
+        <span id="nameError" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Program" class="form-label"></label>
         <input asp-for="Program" class="form-control" />
         <span asp-validation-for="Program" class="text-danger"></span>
+        <span id="programError" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
@@ -40,4 +42,49 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("studentForm");
+
+            form.addEventListener("submit", function (event) {
+                const name = document.getElementById("Name").value.trim();
+                const program = document.getElementById("Program").value.trim();
+
+                const nameError = document.getElementById("nameError");
+                const programError = document.getElementById("programError");
+
+                nameError.textContent = "";
+                programError.textContent = "";
+
+                let isValid = true;
+                const namePattern = /^[a-zA-Z\s'-]+$/;
+
+                if (name === "") {
+                    nameError.textContent = "Please enter the student's name.";
+                    isValid = false;
+                } else if (!namePattern.test(name)) {
+                    nameError.textContent =
+                        "Name must contain only letters, spaces, hyphens, or apostrophes.";
+                    isValid = false;
+                }
+
+                const programPattern = /^[a-zA-Z0-9\s&()'-]+$/;
+
+                if (program === "") {
+                    programError.textContent = "Please enter the student's program.";
+                    isValid = false;
+                } else if (!programPattern.test(program)) {
+                    programError.textContent = "Program contains invalid characters.";
+                    isValid = false;
+                } else if (!/[a-zA-Z]/.test(program)) {
+                    programError.textContent = "Program must contain at least one letter.";
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
 }

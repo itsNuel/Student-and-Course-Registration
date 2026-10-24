@@ -4,13 +4,17 @@ namespace myproject.ViewModels
 {
     public class StudentCreateViewModel
     {
-        [Required(ErrorMessage = "Student name is required.")]
+        [Required(ErrorMessage = "Please enter the student's name.")]
         [StringLength(100, ErrorMessage = "Name cannot exceed 100 characters.")]
+        [RegularExpression(@"^[a-zA-Z\s'-]+$",
+            ErrorMessage = "Name must contain only letters, spaces, hyphens, or apostrophes.")]
         [Display(Name = "Student Name")]
         public string Name { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Program is required.")]
+        [Required(ErrorMessage = "Please enter the student's program.")]
         [StringLength(100, ErrorMessage = "Program cannot exceed 100 characters.")]
+        [RegularExpression(@"^(?=.*[a-zA-Z])[a-zA-Z0-9\s&()'-]+$",
+            ErrorMessage = "Program must contain at least one letter and only valid characters.")]
         [Display(Name = "Program Name")]
         public string Program { get; set; } = string.Empty;
 
