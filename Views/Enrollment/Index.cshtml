@@ -1,0 +1,38 @@
+@model IEnumerable<myproject.Models.Enrollment>
+
+@{
+    ViewData["Title"] = "Enrollment Records";
+}
+
+<h1 class="page-title">Enrollment Records</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Enroll Student</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Enrollment ID</th>
+            <th>Student</th>
+            <th>Course</th>
+            <th>Instructor</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var enrollment in Model)
+        {
+            <tr>
+                <td>@enrollment.Id</td>
+                <td>@(enrollment.Student?.Name ?? "Unknown student")</td>
+                <td>@(enrollment.Course?.CourseName ?? "Unknown course")</td>
+                <td>@(enrollment.Course?.Instructor ?? "Unknown instructor")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@enrollment.Id" class="btn btn-sm btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@enrollment.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,34 @@
+@model myproject.Models.Enrollment
+
+@{
+    ViewData["Title"] = "Enroll Student";
+}
+
+<h1 class="page-title">Enroll Student in Course</h1>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="StudentId" class="form-label">Student</label>
+        <select asp-for="StudentId" asp-items="ViewBag.StudentId" class="form-select">
+            <option value="">-- Select a student --</option>
+        </select>
+        <span asp-validation-for="StudentId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CourseId" class="form-label">Course</label>
+        <select asp-for="CourseId" asp-items="ViewBag.CourseId" class="form-select">
+            <option value="">-- Select a course --</option>
+        </select>
+        <span asp-validation-for="CourseId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enroll Student</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,45 +1,53 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Student Registration</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
+
 <body class="page-body">
     @{
         var pageClass = ViewData["PageClass"] as string;
     }
     <header class="top-header">
         <nav class="navbar navbar-expand-sm navbar-light page-nav">
-            <a class="navbar-brand brand-text" asp-area="" asp-controller="Student" asp-action="Index">Student and Course Reg system</a>
-            <div class="nav-links">
-                <a class="nav-link" asp-area="" asp-controller="Student" asp-action="Index">Home</a>
-                <a class="nav-link" asp-area="" asp-controller="Student" asp-action="Create">Create</a>
-                <a class="nav-link" asp-area="" asp-controller="Courses" asp-action="Index">Courses</a>
-                <a class="nav-link" asp-area="" asp-controller="Courses" asp-action="Create">Create Course</a>
-                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <a class="navbar-brand brand-text" asp-area="" asp-controller="Student" asp-action="Index">Student and
+                Course Reg system</a>
+                <div class="nav-links">
+                    <a class="nav-link" asp-area="" asp-controller="Student" asp-action="Index">Home</a>
+                    <a class="nav-link" asp-area="" asp-controller="Student" asp-action="Create">Create</a>
+                    <a class="nav-link" asp-area="" asp-controller="Courses" asp-action="Index">Courses</a>
+                    <a class="nav-link" asp-area="" asp-controller="Courses" asp-action="Create">Create Course</a>
+                    <a class="nav-link" asp-area="" asp-controller="Enrollment" asp-action="Index">Enrollments</a>
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </div>
+            </nav>
+        </header>
+
+        <main class="page-shell @pageClass">
+            <div class="container">
+                @RenderBody()
             </div>
-        </nav>
-    </header>
+        </main>
 
-    <main class="page-shell @pageClass">
-        <div class="container">
-            @RenderBody()
-        </div>
-    </main>
+        <footer class="page-footer">
+            <div class="container">
+                &copy; <span id="current-year"></span> - Student Registration System -
+                <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
 
-    <footer class="page-footer">
-        <div class="container">
-            &copy; <span id="current-year"></span> - Student Registration System -
-            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
 </html>
