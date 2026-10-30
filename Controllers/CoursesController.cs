@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using myproject.Data;
 using myproject.Models;
 
@@ -19,13 +20,19 @@ namespace myproject.Controllers
                 HttpContext.Session.GetString("DemoUser"));
         }
 
-        public IActionResult Index()
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (!IsDemoUserLoggedIn())
             {
-                return RedirectToAction("Login", "Account");
+                context.Result = RedirectToAction("Login", "Account");
+                return;
             }
 
+            base.OnActionExecuting(context);
+        }
+
+        public IActionResult Index()
+        {
             var courses = _context.Courses
                 .OrderBy(course => course.Id)
                 .ToList();

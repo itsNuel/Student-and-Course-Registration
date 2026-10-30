@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using myproject.Models;
@@ -19,6 +20,17 @@ namespace myproject.Controllers
         {
             return !string.IsNullOrEmpty(
                 HttpContext.Session.GetString("DemoUser"));
+        }
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (!IsDemoUserLoggedIn())
+            {
+                context.Result = RedirectToAction("Login", "Account");
+                return;
+            }
+
+            base.OnActionExecuting(context);
         }
 
         public IActionResult Index()

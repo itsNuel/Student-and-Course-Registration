@@ -19,6 +19,9 @@
         <nav class="navbar navbar-expand-sm navbar-light page-nav">
             <a class="navbar-brand brand-text" asp-area="" asp-controller="Student" asp-action="Index">Student and
                 Course Reg system</a>
+                @{
+                    var demoUser = Context.Session.GetString("DemoUser");
+                }
                 <div class="nav-links">
                     <a class="nav-link" asp-area="" asp-controller="Student" asp-action="Index">Home</a>
                     <a class="nav-link" asp-area="" asp-controller="Student" asp-action="Create">Create</a>
@@ -26,10 +29,9 @@
                     <a class="nav-link" asp-area="" asp-controller="Courses" asp-action="Create">Create Course</a>
                     <a class="nav-link" asp-area="" asp-controller="Enrollment" asp-action="Index">Enrollments</a>
                     <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    @{
-                        var demoUser = Context.Session.GetString("DemoUser");
-                    }
+                </div>
 
+                <div class="nav-auth">
                     @if (!string.IsNullOrEmpty(demoUser))
                     {
                         <span class="nav-link">Hello, @demoUser</span>
