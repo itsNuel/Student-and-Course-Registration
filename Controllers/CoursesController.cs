@@ -13,8 +13,19 @@ namespace myproject.Controllers
             _context = context;
         }
 
+        private bool IsDemoUserLoggedIn()
+        {
+            return !string.IsNullOrEmpty(
+                HttpContext.Session.GetString("DemoUser"));
+        }
+
         public IActionResult Index()
         {
+            if (!IsDemoUserLoggedIn())
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var courses = _context.Courses
                 .OrderBy(course => course.Id)
                 .ToList();

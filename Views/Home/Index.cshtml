@@ -6,3 +6,27 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+@{
+    var demoUser = Context.Session.GetString("DemoUser");
+}
+
+<h2>Welcome</h2>
+
+@if (!string.IsNullOrEmpty(demoUser))
+{
+    <p>
+        Hello, @demoUser.<br />
+        The demo session value is present.
+    </p>
+}
+else
+{
+    <p>You are not signed in to the classroom demo.</p>
+
+    <a asp-controller="Account"
+       asp-action="Login"
+       class="btn btn-primary">
+        Login
+    </a>
+}

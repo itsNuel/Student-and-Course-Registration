@@ -15,6 +15,12 @@ namespace myproject.Controllers
             _context = context;
         }
 
+        private bool IsDemoUserLoggedIn()
+        {
+            return !string.IsNullOrEmpty(
+                HttpContext.Session.GetString("DemoUser"));
+        }
+
         public IActionResult Index()
         {
             var enrollments = _context.Enrollments

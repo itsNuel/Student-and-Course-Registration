@@ -26,6 +26,26 @@
                     <a class="nav-link" asp-area="" asp-controller="Courses" asp-action="Create">Create Course</a>
                     <a class="nav-link" asp-area="" asp-controller="Enrollment" asp-action="Index">Enrollments</a>
                     <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    @{
+                        var demoUser = Context.Session.GetString("DemoUser");
+                    }
+
+                    @if (!string.IsNullOrEmpty(demoUser))
+                    {
+                        <span class="nav-link">Hello, @demoUser</span>
+
+                        <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-outline-danger">
+                                Logout
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary">
+                            Login
+                        </a>
+                    }
                 </div>
             </nav>
         </header>
