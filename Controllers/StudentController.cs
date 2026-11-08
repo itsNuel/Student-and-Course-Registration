@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using myproject.Data;
 using myproject.Models;
@@ -5,6 +6,7 @@ using myproject.ViewModels;
 
 namespace myproject.Controllers
 {
+    [Authorize]
     public class StudentController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -14,18 +16,9 @@ namespace myproject.Controllers
             _context = context;
         }
 
-        private bool IsDemoUserLoggedIn()
-        {
-            return !string.IsNullOrEmpty(
-                HttpContext.Session.GetString("DemoUser"));
-        }
 
         public IActionResult Index()
         {
-            if (!IsDemoUserLoggedIn())
-            {
-                return RedirectToAction("Login", "Account");
-            }
             var students = _context.Students
                 .OrderBy(student => student.Id)
                 .ToList();
@@ -35,11 +28,6 @@ namespace myproject.Controllers
 
         public IActionResult Create()
         {
-            if (!IsDemoUserLoggedIn())
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
             return View(new StudentCreateViewModel());
         }
 
@@ -47,11 +35,6 @@ namespace myproject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(StudentCreateViewModel model)
         {
-            if (!IsDemoUserLoggedIn())
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
             if (ModelState.IsValid)
             {
                 var student = new Student
@@ -73,11 +56,6 @@ namespace myproject.Controllers
         // GET: /Student/Edit/1
         public IActionResult Edit(int? id)
         {
-            if (!IsDemoUserLoggedIn())
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
             if (id == null)
             {
                 return NotFound();
@@ -98,11 +76,6 @@ namespace myproject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Student student)
         {
-            if (!IsDemoUserLoggedIn())
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
             if (id != student.Id)
             {
                 return NotFound();
@@ -122,11 +95,6 @@ namespace myproject.Controllers
         // GET: /Student/Delete/1
         public IActionResult Delete(int? id)
         {
-            if (!IsDemoUserLoggedIn())
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
             if (id == null)
             {
                 return NotFound();
@@ -147,12 +115,6 @@ namespace myproject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-
-            if (!IsDemoUserLoggedIn())
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
             var student = _context.Students.Find(id);
 
             if (student == null)

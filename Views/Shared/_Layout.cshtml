@@ -17,35 +17,33 @@
     }
     <header class="top-header">
         <nav class="navbar navbar-expand-sm navbar-light page-nav">
-            <a class="navbar-brand brand-text" asp-area="" asp-controller="Student" asp-action="Index">Student and
+            <a class="navbar-brand brand-text" asp-area="" asp-controller="Home" asp-action="Index">Student and
                 Course Reg system</a>
-                @{
-                    var demoUser = Context.Session.GetString("DemoUser");
-                }
+    
                 <div class="nav-links">
-                    <a class="nav-link" asp-area="" asp-controller="Student" asp-action="Index">Home</a>
-                    <a class="nav-link" asp-area="" asp-controller="Student" asp-action="Create">Create</a>
-                    <a class="nav-link" asp-area="" asp-controller="Courses" asp-action="Index">Courses</a>
-                    <a class="nav-link" asp-area="" asp-controller="Courses" asp-action="Create">Create Course</a>
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <a class="nav-link" asp-area="" asp-controller="Student" asp-action="Index">Student</a>
+                    <a class="nav-link" asp-area="" asp-controller="Courses" asp-action="Index">Course</a>
                     <a class="nav-link" asp-area="" asp-controller="Enrollment" asp-action="Index">Enrollments</a>
                     <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                 </div>
 
                 <div class="nav-auth">
-                    @if (!string.IsNullOrEmpty(demoUser))
+                    @if (User.Identity?.IsAuthenticated == true)
                     {
-                        <span class="nav-link">Hello, @demoUser</span>
+                        <span class="nav-link">Hello, @User.Identity.Name</span>
 
                         <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
-                            <button type="submit" class="btn btn-outline-danger">
-                                Logout
-                            </button>
+                            <button type="submit" class="btn btn-outline-danger">Logout</button>
                         </form>
                     }
                     else
                     {
                         <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary">
                             Login
+                        </a>
+                        <a asp-controller="Account" asp-action="SignUp" class="btn btn-outline-primary">
+                            Sign Up
                         </a>
                     }
                 </div>

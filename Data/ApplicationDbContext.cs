@@ -19,5 +19,7 @@ namespace myproject.Data
         public DbSet<Course> Courses { get; set; }
 
         public DbSet<Enrollment> Enrollments { get; set; }
+
+        public DbSet<UserAccount> UserAccounts { get; set; }
     }
 }

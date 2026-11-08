@@ -91,6 +91,31 @@ namespace myproject.Migrations
                     b.ToTable("Students");
                 });
 
+            modelBuilder.Entity("myproject.Models.UserAccount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserAccounts");
+                });
+
             modelBuilder.Entity("myproject.Models.Enrollment", b =>
                 {
                     b.HasOne("myproject.Models.Course", "Course")

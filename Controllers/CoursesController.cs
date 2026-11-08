@@ -1,10 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using myproject.Data;
 using myproject.Models;
 
 namespace myproject.Controllers
 {
+    [Authorize]
     public class CoursesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -14,22 +15,6 @@ namespace myproject.Controllers
             _context = context;
         }
 
-        private bool IsDemoUserLoggedIn()
-        {
-            return !string.IsNullOrEmpty(
-                HttpContext.Session.GetString("DemoUser"));
-        }
-
-        public override void OnActionExecuting(ActionExecutingContext context)
-        {
-            if (!IsDemoUserLoggedIn())
-            {
-                context.Result = RedirectToAction("Login", "Account");
-                return;
-            }
-
-            base.OnActionExecuting(context);
-        }
 
         public IActionResult Index()
         {

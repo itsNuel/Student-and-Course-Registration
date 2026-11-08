@@ -7,22 +7,15 @@
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-@{
-    var demoUser = Context.Session.GetString("DemoUser");
-}
-
 <h2>Welcome</h2>
 
-@if (!string.IsNullOrEmpty(demoUser))
+@if (User.Identity?.IsAuthenticated == true)
 {
-    <p>
-        Hello, @demoUser.<br />
-        The demo session value is present.
-    </p>
+    <p>Hello, @User.Identity.Name. You are signed in.</p>
 }
 else
 {
-    <p>You are not signed in to the classroom demo.</p>
+    <p>You are not signed in.</p>
 
     <a asp-controller="Account"
        asp-action="Login"
