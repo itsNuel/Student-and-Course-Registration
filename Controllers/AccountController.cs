@@ -133,9 +133,20 @@ public class AccountController : Controller
 
         var principal = new ClaimsPrincipal(identity);
 
+
+
         await HttpContext.SignInAsync(
-            CookieAuthenticationDefaults.AuthenticationScheme,
-            principal);
+     CookieAuthenticationDefaults.AuthenticationScheme,
+     principal,
+     new AuthenticationProperties
+     {
+         IsPersistent = model.RememberMe,
+         ExpiresUtc = model.RememberMe
+             ? DateTimeOffset.UtcNow.AddDays(14)
+             : null
+     });
+
+
 
         if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
         {
@@ -156,7 +167,7 @@ public class AccountController : Controller
 
         return RedirectToAction(nameof(Login));
     }
-    
+
 
     [HttpGet]
     [AllowAnonymous]
